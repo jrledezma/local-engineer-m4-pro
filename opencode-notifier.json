@@ -1,0 +1,37 @@
+{
+  "sound": true,
+  "notification": true,
+  "suppressWhenFocused": false,
+  "showProjectName": true,
+  "showSessionTitle": true,
+  "notificationSystem": "osascript",
+  "minDuration": 3,
+  "events": {
+    "complete":          { "sound": true, "notification": true },
+    "permission":        { "sound": true, "notification": true },
+    "error":             { "sound": true, "notification": true },
+    "question":          { "sound": true, "notification": true },
+    "plan_exit":         { "sound": true, "notification": true },
+    "subagent_complete": { "sound": true, "notification": true },
+    "user_cancelled":    { "sound": false, "notification": false },
+    "session_started":   { "sound": false, "notification": false },
+    "user_message":      { "sound": false, "notification": false },
+    "client_connected":  { "sound": false, "notification": false }
+  },
+  "messages": {
+    "complete":          "✅ Done: {sessionTitle}",
+    "permission":        "🔐 Approve Required: {sessionTitle}",
+    "error":             "❌ Error en session: {sessionTitle}",
+    "question":          "❓ Agent has a question: {sessionTitle}",
+    "plan_exit":         "📋 Plan ready for review: {sessionTitle}",
+    "subagent_complete": "✅ Subagent finished: {sessionTitle}"
+  },
+  "sounds": {
+    "complete":          "Glass",
+    "permission":        "Submarine",
+    "error":             "Basso",
+    "question":          "Ping",
+    "plan_exit":         "Hero",
+    "subagent_complete": "Tink"
+  }
+}
