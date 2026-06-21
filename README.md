@@ -34,13 +34,25 @@ Traditional setups force CPU thread limits or aggressive KV Cache quantization (
 
 ## Installation Guide
 
-### Step 1: Install Global Dependencies
+### Step 1: Install Prerequisites (Ollama & OpenCode)
+Before configuring the environment, ensure you have both core runtimes installed on your macOS system:
+
+* **Ollama:** Download and install the official Apple Silicon binary from [ollama.com](https://ollama.com) or install it via Homebrew:
+  ```bash
+  brew install ollama
+  ```
+* **OpenCode CLI:** Install the core agent engine via bash download pipe:
+  ```bash
+  curl -fsSL https://opencode.ai | bash
+  ```
+
+### Step 2: Install Global Dependencies
 Install the official OpenCode background utilities and formatting engines globally via npm:
 ```bash
 npm install -g @nick-vi/opencode-type-inject envsitter-guard opencode-pty @mohak34/opencode-notifier
 ```
 
-### Step 2: Provision the Local AI Model
+### Step 3: Provision the Local AI Model
 Pull the core model weights and compile the optimized development variant using Ollama:
 ```bash
 # Pull the base model weights
@@ -50,7 +62,7 @@ ollama pull qwen3-coder:30b
 ollama create qwen-coder-dev -f Modelfile
 ```
 
-### Step 3: Deploy Config Files
+### Step 4: Deploy Config Files
 Move the provided configuration files into your local directory structure:
 ```bash
 mkdir -p ~/.config/opencode
@@ -58,7 +70,7 @@ cp config.json ~/.config/opencode/config.json
 cp opencode-notifier.json ~/.config/opencode/opencode-notifier.json
 ```
 
-### Step 4: Setup the Execution Alias
+### Step 5: Setup the Execution Alias
 Move the optimized execution script into your system binaries and grand execution permissions:
 ```bash
 sudo cp oc /usr/local/bin/oc
