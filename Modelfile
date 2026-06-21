@@ -1,0 +1,8 @@
+FROM qwen3-coder:30b
+
+PARAMETER num_ctx 49152
+PARAMETER num_predict 8192
+PARAMETER repeat_last_n 128
+PARAMETER repeat_penalty 1.15
+PARAMETER stop "<|im_end|>"
+PARAMETER stop "<|endoftext|>"
