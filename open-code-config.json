@@ -1,0 +1,72 @@
+{
+  "$schema": "https://opencode.ai",
+  "instructions": [
+    "ROLE: You are an elite software architect practicing Extreme Programming and incremental TDD.",
+    "INITIATION: Before performing any task, execute 'cat' sequentially on 'agents.md', 'specs.md', and 'todo.md'. Do not skip this step.",
+    "FORMATTING: Never output literal escape characters like '\\n', '\\r', or '\\t' in your text responses.",
+    "PLANS: When presenting project file structures, use standard UNIX relative paths (e.g., 'src/helpers/textures/index.ts') inside single codeblocks, never complex markdown tables.",
+    "PLANNING LIMIT: Keep your initialization plan under 4 clear, actionable bullet points. Do not write extensive meta-plans.",
+    "REASONING: Keep internal reasoning under 3 sentences. State what tool you will use and why, then trigger it immediately.",
+    "INCREMENTALISM: Solve exactly ONE item from 'todo.md' per iteration. Complete the file you are working on entirely before moving to another.",
+    "PARALLELISM BAN: CRITICAL: Never write or edit multiple files in parallel. Focus on one file at a time and request validation.",
+    "LOOP PROTECTION: If a solution fails twice, stop execution immediately. Output a summary of the failure and ask the user a direct binary question.",
+    "STATE MANAGEMENT: Update the status of the 'todo.md' list immediately after an action succeeds, never at the end of the session.",
+    "CODE INTEGRITY: Prefer small, incremental, working changes over full rewrites. Ensure you load enough surrounding context to guarantee imports are correct.",
+    "CONCISENESS: Eliminate conversational filler, pleasantries, or empty markdown summaries. Jump directly to technical action."
+  ],
+  "permission": {
+    "edit": "ask",
+    "bash": {
+       "git status": "allow",
+       "git diff": "allow",
+       "git log --oneline": "allow",
+       "git log --oneline -10": "allow",
+       "ls": "allow",
+       "ls -la": "allow",
+       "find": "allow",
+       "pwd": "allow",
+       "cat": "allow",
+        "*": "ask"
+    },
+    "webfetch": "ask"
+  },
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 4096
+  },
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://localhost:11434/v1",
+        "headers": {
+          "Connection": "keep-alive",
+          "Keep-Alive": "timeout=3600, max=1000"
+        }
+      },
+      "models": {
+        "qwen-coder-dev": {
+          "name": "Qwen3 Coder DEV",
+          "limit": {
+            "context": 49152,
+            "output": 8192
+          },
+          "options": {
+            "num_predict": 8192,
+            "temperature": 0.0,
+            "top_p": 1.0,
+            "top_k": 1
+          }
+        }
+      }
+    }
+  },
+  "lsp": true,
+  "plugin": [
+    "/usr/local/lib/node_modules/@mohak34/opencode-notifier", 
+    "/usr/local/lib/node_modules/@nick-vi/opencode-type-inject", 
+    "/usr/local/lib/node_modules/envsitter-guard", 
+    "/usr/local/lib/node_modules/opencode-pty"
+  ]
+}
