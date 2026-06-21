@@ -1,0 +1,11 @@
+#!/bin/zsh
+export OLLAMA_FLASH_ATTENTION=1
+export OLLAMA_NUM_PARALLEL=1
+export OLLAMA_KEEP_ALIVE=60m
+export NODE_PATH="$(npm root -g):$HOME/.config/opencode/plugins/node_modules:$NODE_PATH"
+export NODE_OPTIONS="--max-old-space-size=4096 --no-warnings"
+
+echo "🚀 Starting OpenCode on MacBook Pro M4 Pro..." 
+echo "🧠 Context: 49k | KV Cache: Native f16 | Model: Qwen 3 Coder 30B"
+
+caffeinate -i opencode --print-logs -m ollama/qwen-coder-dev "$@"
